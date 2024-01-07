@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', function () {
     generateArrayButton.addEventListener('click', generateArray);
     startSortButton.addEventListener('click', startSort);
 
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
     function generateArray() {
         array = [];
         arrayContainer.innerHTML = '';
@@ -39,21 +41,24 @@ document.addEventListener('DOMContentLoaded', function () {
         for (let i = 0; i < arr.length - 1; i++) {
             for (let j = 0; j < arr.length - i - 1; j++) {
                 if (arr[j] > arr[j + 1]) {
-                    await swap(array, j, j + 1);
+                    await swap(array, j, j + 1, speed);
                     await updateArrayBars(arrayBars, arr, speed);
                 }
             }
         }
     }
 
-    function swap(arr, index1, index2) {
+    function swap(arr, index1, index2, speed) {
         return new Promise((resolve) => {
+            playTone(arr[index1]);
+            playTone(arr[index2]);
+
             setTimeout(() => {
                 const temp = arr[index1];
                 arr[index1] = arr[index2];
                 arr[index2] = temp;
                 resolve();
-            }, 200);
+            }, speed / 8); // Faster swap
         });
     }
 
@@ -64,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     bar.style.height = `${arr[index]}px`;
                 });
                 resolve();
-            }, speed);
+            }, speed / 8); // Faster update
         });
     }
 
@@ -82,6 +87,26 @@ document.addEventListener('DOMContentLoaded', function () {
         generateArrayButton.disabled = false;
         startSortButton.disabled = false;
         speedRangeInput.disabled = false;
+    }
+
+    function playTone(value) {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+
+        oscillator.type = 'sine';
+        oscillator.frequency.value = mapRange(value, 5, 200, 100, 1000); // Map value to frequency
+        gainNode.gain.value = 0.3;
+
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+
+        oscillator.start();
+        gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.01); // Faster decay
+        oscillator.stop(audioContext.currentTime + 0.01); // Faster stop
+    }
+
+    function mapRange(value, fromMin, fromMax, toMin, toMax) {
+        return (value - fromMin) * (toMax - toMin) / (fromMax - fromMin) + toMin;
     }
 
     // Initial array generation
