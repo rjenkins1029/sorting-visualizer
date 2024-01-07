@@ -1,6 +1,6 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f0f0; /* Light gray background */
+    background-color: #f0f0f0;
     margin: 0;
     display: flex;
     align-items: center;
@@ -12,8 +12,8 @@ body {
     text-align: center;
     color: #333;
     border-radius: 10px;
-    background-color: #fff; /* White container background */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
 }
 
@@ -23,15 +23,15 @@ body {
     margin-top: 20px;
     border-radius: 5px;
     overflow: hidden;
+    height: 70vh; /* Adjust the height as needed */
 }
 
 .array-bar {
-    background-color: #3498db;
-    border: 1px solid #2980b9;
+    background-color: #6b8e23; /* Olive Green */
     flex: 1;
     margin: 0 1px;
     transition: height 0.3s;
-    border-radius: 2px; /* Soften the edges of array bars */
+    border-radius: 2px;
 }
 
 button {
@@ -39,7 +39,7 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
-    background-color: #2ecc71;
+    background-color: #3498db; /* Blue */
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -47,7 +47,7 @@ button {
 }
 
 button:hover {
-    background-color: #27ae60;
+    background-color: #2980b9; /* Darker Blue */
 }
 
 .speed-control {
@@ -59,7 +59,7 @@ button:hover {
 label {
     font-size: 16px;
     margin-right: 5px;
-    color: #555; /* Darker label color */
+    color: #555;
 }
 
 input {
