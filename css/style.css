@@ -43,12 +43,24 @@ button:hover {
     background-color: #27ae60;
 }
 
+.speed-control {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
 label {
     font-size: 16px;
     margin-right: 5px;
 }
 
 input {
-    width: 50px;
-    margin-bottom: 10px;
+    width: 100px;
+    margin-right: 10px;
+}
+
+.speed-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
 }

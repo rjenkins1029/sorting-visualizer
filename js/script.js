@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const generateArrayButton = document.getElementById('generateArray');
     const startSortButton = document.getElementById('startSort');
     const speedRangeInput = document.getElementById('speedRange');
+    const speedLabel = document.getElementById('speedLabel');
 
     let array = [];
 
@@ -111,4 +112,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial array generation
     generateArray();
+
+    // Update speed label
+    speedRangeInput.addEventListener('input', () => {
+        const speed = speedRangeInput.value;
+        updateSpeedLabel(speed);
+    });
+
+    function updateSpeedLabel(speed) {
+        const speedLabelValue = getSpeedLabelValue(speed);
+        speedLabel.textContent = speedLabelValue;
+    }
+
+    function getSpeedLabelValue(speed) {
+        if (speed <= 25) {
+            return 'Very Fast';
+        } else if (speed <= 50) {
+            return 'Fast';
+        } else if (speed <= 75) {
+            return 'Medium';
+        } else {
+            return 'Slow';
+        }
+    }
 });

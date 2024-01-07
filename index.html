@@ -8,13 +8,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="array-container" id="array-container">
-            <!-- Array bars will be dynamically generated using JavaScript -->
-        </div>
+        <div class="array-container" id="array-container"></div>
         <button id="generateArray">Generate New Array</button>
         <button id="startSort">Start Sorting</button>
-        <label for="speedRange">Speed:</label>
-        <input type="range" id="speedRange" min="1" max="100" value="50">
+        <div class="speed-control">
+            <label for="speedRange">Speed:</label>
+            <input type="range" id="speedRange" min="1" max="100" value="50">
+            <div class="speed-label" id="speedLabel">Medium</div>
+        </div>
     </div>
     <script src="js/script.js"></script>
 </body>
