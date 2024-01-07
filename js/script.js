@@ -93,17 +93,17 @@ document.addEventListener('DOMContentLoaded', function () {
     function playTone(value) {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
-
-        oscillator.type = 'sine';
-        oscillator.frequency.value = mapRange(value, 5, 200, 100, 1000); // Map value to frequency
-        gainNode.gain.value = 0.3;
-
+    
+        oscillator.type = 'triangle'; // Use a triangle waveform for a bubbly sound
+        oscillator.frequency.value = mapRange(value, 5, 200, 200, 2000); // Adjust frequency range
+        gainNode.gain.value = 0.1; // Adjust gain for a softer sound
+    
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-
+    
         oscillator.start();
-        gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.01); // Faster decay
-        oscillator.stop(audioContext.currentTime + 0.01); // Faster stop
+        gainNode.gain.exponentialRampToValueAtTime(0.00001, audioContext.currentTime + 0.1);
+        oscillator.stop(audioContext.currentTime + 0.1);
     }
 
     function mapRange(value, fromMin, fromMax, toMin, toMax) {
